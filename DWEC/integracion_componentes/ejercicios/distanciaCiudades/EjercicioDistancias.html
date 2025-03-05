@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distancia entre Coordenadas</title>
+</head>
+<body>
+    <h1>Distancia entre Madrid y Buenos Aires</h1>
+    <p id="resultado"></p>
+
+    <script>
+        let lat1 = 40.415052;  // Madrid
+        let lat2 = -34.609294; // Buenos Aires
+        let lon1 = -3.703414;
+        let lon2 = -58.381103;
+    
+        function distancia(lat1, lat2, lon1, lon2) {
+            lon1 = lon1 * Math.PI / 180;
+            lon2 = lon2 * Math.PI / 180;
+            lat1 = lat1 * Math.PI / 180;
+            lat2 = lat2 * Math.PI / 180;
+    
+            let dlon = lon2 - lon1; 
+            let dlat = lat2 - lat1;
+            let a = Math.pow(Math.sin(dlat / 2), 2)
+                    + Math.cos(lat1) * Math.cos(lat2)
+                    * Math.pow(Math.sin(dlon / 2), 2);
+                
+            let c = 2 * Math.asin(Math.sqrt(a));
+    
+            let r = 6371;
+    
+            return (c * r);
+        }
+
+        let distanciaCalculada = distancia(lat1, lat2, lon1, lon2);
+
+        console.log(`La latitud de Madrid es: ${lat1}`);
+        console.log(`La longitud de Madrid es: ${lon1}`);
+        console.log(`La latitud de Buenos Aires es: ${lat2}`);
+        console.log(`La longitud de Buenos Aires es: ${lon2}`);
+        console.log(`La distancia entre las coordenadas es: ${distanciaCalculada} km`);
+
+        document.getElementById("resultado") = `La distancia entre Madrid y Buenos Aires es: ${distanciaCalculada} km`;
+    </script>
+</body>
+</html>

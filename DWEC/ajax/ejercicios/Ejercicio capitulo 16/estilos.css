@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+}
+
+.cuerpo-container {
+  position: relative;
+  width: 800px;
+  height: 900px;
+  background-image: url('img/partes.Avif');
+  background-size: cover;
+  border: 2px solid #ccc;
+  margin: 20px auto;
+}
+
+.cuadradito {
+  position: absolute;
+  padding: 5px 10px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#divmensaje {
+  background-color: yellow;
+  position: absolute;
+  visibility: hidden;
+  padding: 5px;
+  width: 250px;
+  z-index: 100;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

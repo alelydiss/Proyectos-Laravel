@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito usando localStorage</title>
+</head>
+<body>
+    <h1>Carrito usando localStorage</h1>
+    <form id="addItemForm">
+        <label for="articulo">Artículo:</label>
+        <input type="text" id="articulo" required>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" required>
+        <button type="submit">Añadir</button>
+    </form>
+    <button id="vaciarCarrito">Vaciar carrito</button>
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Artículo</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody id="carritoTabla">
+        </tbody>
+    </table>
+
+    <script>
+        let carrito;
+        if (localStorage.carrito) {
+            carrito = JSON.parse(localStorage.carrito);
+        } else {
+            carrito = [];
+        }
+
+        function renderizarCarrito() {
+            const tabla = document.getElementById("carritoTabla");
+            tabla.innerHTML = "";
+
+            carrito.forEach((item, index) => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td>${item.articulo}</td>
+                    <td>${item.cantidad}</td> `;
+                tabla.appendChild(fila);
+            });
+        }
+
+        document.getElementById("addItemForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const articulo = document.getElementById("articulo").value.trim();
+            const cantidad = parseFloat(document.getElementById("cantidad").value);
+
+            if (articulo && cantidad > 0) {
+                carrito.push({ articulo, cantidad });
+                localStorage.carrito = JSON.stringify(carrito);
+                renderizarCarrito();
+            }
+        });
+
+        document.getElementById("vaciarCarrito").addEventListener("click", () => {
+            carrito = [];
+            localStorage.carrito = JSON.stringify(carrito);
+            renderizarCarrito();
+        });
+
+        renderizarCarrito();
+    </script>
+</body>
+</html>

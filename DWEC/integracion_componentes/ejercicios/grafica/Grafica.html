@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfica Polar Area</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<style>
+  #chart-container {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 15px;
+  }
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
+<body>
+  <h1>Visitas a Secciones del Sitio Web (Noviembre 2023)</h1>
+  <div id="chart-container">
+    <canvas id="visitasPolarChart"></canvas>
+  </div>
+
+  <script>
+    const visitasPorSeccion = [
+      { seccion: "Inicio", visitas: 12000 },
+      { seccion: "Productos", visitas: 8000 },
+      { seccion: "Blog", visitas: 5000 },
+      { seccion: "Contacto", visitas: 3000 },
+      { seccion: "Sobre Nosotros", visitas: 2000 }
+    ];
+
+    const secciones = visitasPorSeccion.map(dato => dato.seccion);
+    const visitas = visitasPorSeccion.map(dato => dato.visitas);
+
+    const ctx = document.getElementById('visitasPolarChart').getContext('2d');
+    const visitasPolarChart = new Chart(ctx, {
+      type: 'polarArea',
+      data: {
+        labels: secciones,
+        datasets: [
+          {
+            label: 'Cantidad de Visitas',
+            data: visitas,
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)'
+            ],
+            borderColor: [
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 99, 132, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>

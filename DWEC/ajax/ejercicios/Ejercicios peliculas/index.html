@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrador de pelis y series</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="funcionesPeliculas.js"></script>
+</head>
+<body>
+    <h2>Haz alguna busqueda de un pelicula o serie</h2>
+    <form action="">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo"><br>
+        <select name="tipo" id="tipo">
+            <option value="">Todos</option>
+            <option value="movie">Película</option>
+            <option value="series">Serie</option>
+        </select>
+        <input type="button" value="Buscar" id="buscar">
+    </form>
+    <div id="resultados">
+
+    </div>
+</body>
+</html>

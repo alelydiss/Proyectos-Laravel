@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor</title>
+</head>
+<body>
+    <h2>Convertidor de DD a DMS</h2>
+    <form action="">
+        <label for="latitud">Latitud:</label>
+        <input type="text" name="latitud" id="latitud" placeholder="Latitud"><br><br>
+        <label for="longitud">Longitud:</label>
+        <input type="text" name="longitud" id="longitud" placeholder="Longitud"><br><br>
+        <input type="submit" value="Convertir">
+    </form>
+    <h2>Convertidor de DMS a DD</h2>
+    <form action="">
+        <label for="latitud">Grados:</label>
+        <input type="text" name="grados" id="grados" placeholder="grados"><br><br>
+        <label for="longitud">Minutos:</label>
+        <input type="text" name="minutos" id="minutos" placeholder="minutos"><br><br>
+        <label for="longitud">Segundos:</label>
+        <input type="text" name="segundos" id="segundos" placeholder="segundos"><br><br>
+        <input type="submit" value="Convertir">
+    </form>
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let latitud = document.getElementById('latitud').value;
+            let longitud = document.getElementById('longitud').value;
+            let latitudDMS = latDD2DMS(latitud);
+            let longitudDMS = longitudDD2MS(longitud);
+            console.log('Latitud DMS:', latitudDMS);
+            console.log('Longitud DMS:', longitudDMS);
+        });
+
+        function latDD2DMS(latitud) {
+            let latitudDMS = [];
+            let grados = Math.floor(latitud);
+            let minutos = Math.floor((latitud - grados) * 60);
+            let segundos = ((latitud - grados) * 60 - minutos) * 60;
+            let direccion = 'N';
+            if (grados < 0) {
+                direccion = 'S';
+            }
+            latitudDMS.push(grados, minutos, segundos, direccion);
+            return latitudDMS;
+        }
+
+        function longitudDD2MS(longitud) {
+            let longitudDMS = [];
+            let grados = Math.floor(longitud);
+            let minutos = Math.floor((longitud - grados) * 60);
+            let segundos = ((longitud - grados) * 60 - minutos) * 60;
+            let direccion = 'E';
+            if (grados < 0) {
+                direccion = 'W';
+            }
+            longitudDMS.push(grados, minutos, segundos, direccion);
+            return longitudDMS;
+        }
+    </script>
+</body>
+</html>
